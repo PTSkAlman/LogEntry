@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 
 public class Loggbok {
-    LogEntry entry;
-    ArrayList<LogEntry> entryArrayList;
+    private LogEntry entry;
+    private ArrayList<LogEntry> entryArrayList;
     public Loggbok(LogEntry entry) {
         entryArrayList = new ArrayList<>();
         entryArrayList.add(entry);
@@ -18,6 +18,39 @@ public class Loggbok {
         entryArrayList.remove(index);
     }
 
+    public ArrayList<LogEntry> getEntryArrayList() {
+        return entryArrayList;
+    }
+
+    @Override
+    public String toString() {
+        return "Loggbok{" +
+                "entryArrayList=" + entryArrayList +
+                "}";
+    }
+
+    public String getMessage() {
+        String s = "";
+        for (int i = 0; i < entryArrayList.size(); i++) {
+            s += entryArrayList.get(i).getMessage() + "\n";
+        }
+        return s;
+    }
+    public String getAuthor() {
+        String s = "";
+        for (int i = 0; i < entryArrayList.size(); i++) {
+            s += entryArrayList.get(i).getAuthor() + "\n";
+        }
+        return s;
+    }
+    public String getDate() {
+        String s = "";
+        for (int i = 0; i < entryArrayList.size(); i++) {
+            s += entryArrayList.get(i).getDate() + "\n";
+        }
+        return s;
+    }
+
     public void save() {
         try {
             ObjectOutputStream outs = new ObjectOutputStream(new FileOutputStream(new File("testSave")));
@@ -29,15 +62,15 @@ public class Loggbok {
         }
     }
 
-    public void load() {
+    public ArrayList<LogEntry> load() {
+        ArrayList<LogEntry> l = new ArrayList<LogEntry>();
         try {
             ObjectInputStream ins = new ObjectInputStream(new FileInputStream(new File("testSave")));
-
-            ArrayList<LogEntry> l = (ArrayList<LogEntry>) ins.readObject();
+            l = (ArrayList<LogEntry>) ins.readObject();
             ins.close();
-            System.out.println(l);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return l;
     }
 }

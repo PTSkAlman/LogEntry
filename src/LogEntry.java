@@ -11,10 +11,23 @@ public class LogEntry implements Serializable {
         this.message = message;
         this.author = author;
         date = new Date();
+
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     @Override
     public String toString() {
-        return "LogEntry{" + "message='" + message + '\'' + ", author='" + author + '\'' + ", date=" + date + '}';
+        return "LogEntry{" + "message='" + message + '\'' + ", author='" + author + '\'' + ", date=" + date + "}\n";
     }
 }
