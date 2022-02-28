@@ -18,6 +18,14 @@ public class Loggbok {
         entryArrayList.remove(index);
     }
 
+    public int size() {
+        int i = 0;
+        for (int j = 0; i < entryArrayList.size(); j++) {
+            i++;
+        }
+        return i;
+    }
+
     public ArrayList<LogEntry> getEntryArrayList() {
         return entryArrayList;
     }
@@ -29,21 +37,21 @@ public class Loggbok {
                 "}";
     }
 
-    public String getMessage() {
+    public String sendMessage() {
         String s = "";
         for (int i = 0; i < entryArrayList.size(); i++) {
             s += entryArrayList.get(i).getMessage() + "\n";
         }
         return s;
     }
-    public String getAuthor() {
+    public String sendAuthor() {
         String s = "";
         for (int i = 0; i < entryArrayList.size(); i++) {
             s += entryArrayList.get(i).getAuthor() + "\n";
         }
         return s;
     }
-    public String getDate() {
+    public String sendDate() {
         String s = "";
         for (int i = 0; i < entryArrayList.size(); i++) {
             s += entryArrayList.get(i).getDate() + "\n";
@@ -51,9 +59,9 @@ public class Loggbok {
         return s;
     }
 
-    public void save() {
+    public void save(String filename) {
         try {
-            ObjectOutputStream outs = new ObjectOutputStream(new FileOutputStream(new File("testSave")));
+            ObjectOutputStream outs = new ObjectOutputStream(new FileOutputStream(new File(filename)));
             outs.writeObject(entryArrayList);
             outs.flush();
             outs.close();
@@ -62,10 +70,10 @@ public class Loggbok {
         }
     }
 
-    public ArrayList<LogEntry> load() {
+    public ArrayList<LogEntry> load(String filename) {
         ArrayList<LogEntry> l = new ArrayList<LogEntry>();
         try {
-            ObjectInputStream ins = new ObjectInputStream(new FileInputStream(new File("testSave")));
+            ObjectInputStream ins = new ObjectInputStream(new FileInputStream(new File(filename)));
             l = (ArrayList<LogEntry>) ins.readObject();
             ins.close();
         } catch (IOException | ClassNotFoundException e) {
