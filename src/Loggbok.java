@@ -1,3 +1,5 @@
+import sun.rmi.runtime.Log;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -5,8 +7,13 @@ import java.util.ArrayList;
 public class Loggbok {
     private LogEntry entry;
     private ArrayList<LogEntry> entryArrayList;
+
+    public Loggbok() {
+
+    }
+
     public Loggbok(LogEntry entry) {
-        entryArrayList = new ArrayList<>();
+        entryArrayList = new ArrayList<LogEntry>();
         entryArrayList.add(entry);
     }
 
@@ -20,7 +27,7 @@ public class Loggbok {
 
     public int size() {
         int i = 0;
-        for (int j = 0; i < entryArrayList.size(); j++) {
+        for (int j = 0; j < entryArrayList.size(); j++) {
             i++;
         }
         return i;
@@ -28,6 +35,10 @@ public class Loggbok {
 
     public ArrayList<LogEntry> getEntryArrayList() {
         return entryArrayList;
+    }
+
+    public void setEntryArrayList(ArrayList<LogEntry> entryArrayList) {
+        this.entryArrayList = entryArrayList;
     }
 
     @Override
